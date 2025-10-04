@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify Playlists</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #1db954 0%, #191414 100%);
+      min-height: 100vh;
+      padding: 20px 15px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .header h1 {
+      color: #1db954;
+      font-size: clamp(24px, 5vw, 36px);
+      margin-bottom: 8px;
+      padding: 0 10px;
+    }
+
+    .header p {
+      color: #fff;
+      font-size: clamp(14px, 3vw, 18px);
+      padding: 0 10px;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      padding: 0 10px;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .search-bar:focus {
+      outline: none;
+      background: #fff;
+      box-shadow: 0 6px 20px rgba(29, 185, 84, 0.3);
+    }
+
+    .search-bar::placeholder {
+      color: #666;
+    }
+
+    .playlists-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .playlist-card {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .playlist-card.hidden {
+      display: none;
+    }
+
+    .playlist-card:active {
+      transform: scale(0.98);
+    }
+
+    .playlist-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .playlist-card h2 {
+      color: #1db954;
+      font-size: clamp(18px, 4vw, 22px);
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .playlist-name-input {
+      flex: 1;
+      padding: 8px 12px;
+      font-size: clamp(16px, 4vw, 20px);
+      border: 2px solid #1db954;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      font-weight: bold;
+    }
+
+    .playlist-name-input:focus {
+      outline: none;
+      background: #fff;
+    }
+
+    .edit-btn, .save-btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .edit-btn {
+      background: #1db954;
+      color: #fff;
+    }
+
+    .edit-btn:hover {
+      background: #1ed760;
+      transform: scale(1.05);
+    }
+
+    .edit-btn:active {
+      transform: scale(0.95);
+    }
+
+    .save-btn {
+      background: #1db954;
+      color: #fff;
+    }
+
+    .save-btn:hover {
+      background: #1ed760;
+    }
+
+    .spotify-container {
+      width: 100%;
+      height: 380px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .no-results {
+      text-align: center;
+      color: #fff;
+      font-size: 20px;
+      padding: 40px 20px;
+      display: none;
+    }
+
+    .no-results.show {
+      display: block;
+    }
+
+    @media (min-width: 769px) {
+      body {
+        padding: 40px 20px;
+      }
+
+      .header {
+        margin-bottom: 40px;
+      }
+
+      .playlists-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 30px;
+      }
+
+      .playlist-card {
+        padding: 20px;
+      }
+
+      .playlist-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .spotify-container {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px 10px;
+      }
+
+      .playlist-card {
+        padding: 12px;
+      }
+
+      .spotify-container {
+        height: 350px;
+      }
+
+      .edit-btn, .save-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+
+  <div class="search-container">
+    <input 
+      type="text" 
+      class="search-bar" 
+      id="searchBar" 
+      placeholder="🔍 Search playlists..."
+    >
+  </div>
+
+  <div class="playlists-grid" id="playlistsGrid">
+    <div class="playlist-card" data-playlist-id="1">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 1</h2>
+        <button class="edit-btn" onclick="editPlaylist(1)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 1"
+          src="https://open.spotify.com/embed/playlist/60q36ak8qbAydx66ai1Toq?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="2">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 2</h2>
+        <button class="edit-btn" onclick="editPlaylist(2)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 2"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1EQncLwOalG3K7?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-results" id="noResults">
+    😔 No playlists found
+  </div>
+
+  <script>
+    // Search functionality
+    const searchBar = document.getElementById('searchBar');
+    const playlistCards = document.querySelectorAll('.playlist-card');
+    const noResults = document.getElementById('noResults');
+
+    searchBar.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      let visibleCount = 0;
+
+      playlistCards.forEach(card => {
+        const playlistName = card.querySelector('.playlist-name').textContent.toLowerCase();
+        
+        if (playlistName.includes(searchTerm)) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Show "no results" message if nothing matches
+      if (visibleCount === 0) {
+        noResults.classList.add('show');
+      } else {
+        noResults.classList.remove('show');
+      }
+    });
+
+    // Edit playlist name functionality
+    function editPlaylist(id) {
+      const card = document.querySelector(`[data-playlist-id="${id}"]`);
+      const header = card.querySelector('.playlist-header');
+      const nameElement = card.querySelector('.playlist-name');
+      const currentName = nameElement.textContent;
+
+      // Replace h2 with input field
+      header.innerHTML = `
+        <input type="text" class="playlist-name-input" value="${currentName}" id="input-${id}">
+        <button class="save-btn" onclick="savePlaylist(${id})">💾 Save</button>
+      `;
+
+      // Focus the input
+      document.getElementById(`input-${id}`).focus();
+    }
+
+    function savePlaylist(id) {
+      const card = document.querySelector(`[data-playlist-id="${id}"]`);
+      const input = document.getElementById(`input-${id}`);
+      const newName = input.value.trim() || 'Unnamed Playlist';
+
+      // Replace input with h2
+      const header = card.querySelector('.playlist-header');
+      header.innerHTML = `
+        <h2 class="playlist-name">${newName}</h2>
+        <button class="edit-btn" onclick="editPlaylist(${id})">✏️ Edit</button>
+      `;
+    }
+
+    // Allow Enter key to save
+    document.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && e.target.classList.contains('playlist-name-input')) {
+        const id = e.target.id.split('-')[1];
+        savePlaylist(id);
+      }
+    });
+  </script>
+</body>
+</html>
