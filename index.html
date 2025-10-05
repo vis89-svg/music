@@ -226,13 +226,14 @@
   </style>
 </head>
 <body>
+ 
 
   <div class="search-container">
     <input 
       type="text" 
       class="search-bar" 
       id="searchBar" 
-      placeholder="1-end"
+      placeholder="SEARCH"
     >
   </div>
 
@@ -240,7 +241,7 @@
     <div class="playlist-card" data-playlist-id="1">
       <div class="playlist-header">
         <h2 class="playlist-name">Playlist 1</h2>
-        
+        <button class="edit-btn" onclick="editPlaylist(1)">✏️ Edit</button>
       </div>
       <div class="spotify-container">
         <iframe
@@ -256,7 +257,7 @@
     <div class="playlist-card" data-playlist-id="2">
       <div class="playlist-header">
         <h2 class="playlist-name">Playlist 2</h2>
-       
+        <button class="edit-btn" onclick="editPlaylist(2)">✏️ Edit</button>
       </div>
       <div class="spotify-container">
         <iframe
@@ -272,7 +273,7 @@
     <div class="playlist-card" data-playlist-id="3">
       <div class="playlist-header">
         <h2 class="playlist-name">Playlist 3</h2>
-      
+        <button class="edit-btn" onclick="editPlaylist(3)">✏️ Edit</button>
       </div>
       <div class="spotify-container">
         <iframe
@@ -288,7 +289,7 @@
     <div class="playlist-card" data-playlist-id="4">
       <div class="playlist-header">
         <h2 class="playlist-name">Playlist 4</h2>
-      
+        <button class="edit-btn" onclick="editPlaylist(4)">✏️ Edit</button>
       </div>
       <div class="spotify-container">
         <iframe
@@ -304,7 +305,7 @@
     <div class="playlist-card" data-playlist-id="5">
       <div class="playlist-header">
         <h2 class="playlist-name">Playlist 5</h2>
-     
+        <button class="edit-btn" onclick="editPlaylist(5)">✏️ Edit</button>
       </div>
       <div class="spotify-container">
         <iframe
@@ -320,7 +321,7 @@
     <div class="playlist-card" data-playlist-id="6">
       <div class="playlist-header">
         <h2 class="playlist-name">Playlist 6</h2>
-       
+        <button class="edit-btn" onclick="editPlaylist(6)">✏️ Edit</button>
       </div>
       <div class="spotify-container">
         <iframe
@@ -336,7 +337,7 @@
     <div class="playlist-card" data-playlist-id="7">
       <div class="playlist-header">
         <h2 class="playlist-name">Playlist 7</h2>
-       
+        <button class="edit-btn" onclick="editPlaylist(7)">✏️ Edit</button>
       </div>
       <div class="spotify-container">
         <iframe
@@ -352,12 +353,204 @@
     <div class="playlist-card" data-playlist-id="8">
       <div class="playlist-header">
         <h2 class="playlist-name">Playlist 8</h2>
- 
+        <button class="edit-btn" onclick="editPlaylist(8)">✏️ Edit</button>
       </div>
       <div class="spotify-container">
         <iframe
           title="Spotify Embed: Playlist 8"
           src="https://open.spotify.com/embed/playlist/37i9dQZF1E4mZvA09hvuJo?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="9">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 9</h2>
+        <button class="edit-btn" onclick="editPlaylist(9)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 9"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E4sWYjb78k7AB?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="10">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 10</h2>
+        <button class="edit-btn" onclick="editPlaylist(10)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 10"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E4lUzjYv443uX?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="11">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 11</h2>
+        <button class="edit-btn" onclick="editPlaylist(11)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 11"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E4msk0TFgsyTF?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="12">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 12</h2>
+        <button class="edit-btn" onclick="editPlaylist(12)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 12"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E4saXsi0xT6zx?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="13">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 13</h2>
+        <button class="edit-btn" onclick="editPlaylist(13)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 13"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1EVHGWrwldPRtj?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="14">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 14</h2>
+        <button class="edit-btn" onclick="editPlaylist(14)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 14"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E34RwGqA6NxpU?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="15">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 15</h2>
+        <button class="edit-btn" onclick="editPlaylist(15)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 15"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E3a0q9kgvFHr5?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="16">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 16</h2>
+        <button class="edit-btn" onclick="editPlaylist(16)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 16"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E35svgnqaOfxy?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="17">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 17</h2>
+        <button class="edit-btn" onclick="editPlaylist(17)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 17"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E35YCKoHoyW9b?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="18">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 18</h2>
+        <button class="edit-btn" onclick="editPlaylist(18)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 18"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E37jdvuzKbvKW?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="19">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 19</h2>
+        <button class="edit-btn" onclick="editPlaylist(19)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 19"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E39jC8PT7IbKd?utm_source=generator&theme=0"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="playlist-card" data-playlist-id="20">
+      <div class="playlist-header">
+        <h2 class="playlist-name">Playlist 20</h2>
+        <button class="edit-btn" onclick="editPlaylist(20)">✏️ Edit</button>
+      </div>
+      <div class="spotify-container">
+        <iframe
+          title="Spotify Embed: Playlist 20"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZtZ8vUCzche?utm_source=generator&theme=0"
           frameborder="0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy">
@@ -439,4 +632,3 @@
   </script>
 </body>
 </html>
-
